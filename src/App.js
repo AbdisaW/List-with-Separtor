@@ -199,13 +199,13 @@ import { getImageUrl } from './utils.js'
 // Filtering arrays of items 
 
 export default function List(){
-  const chemists = people.filter(person =>
-    person.profession === 'chemist'
+  // const chemists = people.filter(person =>
+  //   person.profession  === 'chemist'
 
-  );
+  // );
 
-  const listItems = chemists.map(person =>
-    <li>
+  const listItems = people.map(person =>
+    <li key={person.id}>
       <img 
        src={getImageUrl(person)}
        alt={person.name}
