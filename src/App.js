@@ -1,58 +1,27 @@
-import {people} from './data.js'
-import { getImageUrl } from './utils.js'
+const poem = {
+  lines: [
+    'I write, erase, rewrite',
+    'Erase again, and then',
+    'A poppy blooms.'
+  ]
+};
 
-let chemists =[];
-let everoneElse = [];
+export default function Poem() {
+let output = [];
 
-people.forEach(person =>{
-  if (person.profession === 'chemist') {
-
-    chemists.push(person);
-  }
-  else{
-    everoneElse.push(person)
-  }
+poem.lines.map((line, i)=>{
+  output.push(
+    <hr key={i + '-sepratoar'}/>
+  );
+  output.push(
+    <p key={i + '-text'}>{line}</p>
+  )
 });
+output.shift() // remove the first hr
+return(
+  <article>
+    {output}
+  </article>
+)
 
-function ListSection({title, people}){
-  return(
-    <>
-      <h2>{title}</h2>
-      <ul>
-        {people.map(person =>
-            <li key={person.id}>
-               <img
-                  src={getImageUrl(person)}
-                  alt={person.name}
-               /> 
-              <p>
-                <b>{person.name}:</b>
-                {' ' + person.profession + ' '}
-                known for {person.accomplishment}
-              </p>
-
-            </li>
-          )
-        }
-
-      </ul>
-
-    </>
-  )
-}
-
-export default function List(){
-  return(
-    <article>
-      <h2>Scientists </h2>
-      <ListSection 
-        title= "chemists"
-        people={chemists}
-      />
-      <ListSection 
-        title= "Everone Else"
-        people={everoneElse}
-      />
-    </article>
-  )
 }
