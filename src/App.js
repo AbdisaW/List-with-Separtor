@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const poem = {
   lines: [
     'I write, erase, rewrite',
@@ -7,21 +9,16 @@ const poem = {
 };
 
 export default function Poem() {
-let output = [];
-
-poem.lines.map((line, i)=>{
-  output.push(
-    <hr key={i + '-sepratoar'}/>
-  );
-  output.push(
-    <p key={i + '-text'}>{line}</p>
-  )
-});
-output.shift() // remove the first hr
 return(
   <article>
-    {output}
+    {poem.lines.map((line, i)=>
+    <Fragment key={i}>
+      {i > 0 && <hr />}
+      <p>{line}</p>
+    </Fragment>
+    )}
   </article>
-)
+
+);
 
 }
